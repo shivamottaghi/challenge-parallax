@@ -4,13 +4,15 @@
 }
 body{
     background-color: #b3b0ff;
+    overflow: hidden;
 }
 #canvas1{
     position: absolute;
-    width: 700px;
-    height: 600px;
+    width: 1000px;
+    height:600px;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     border: 2px solid #2b2b5a;
+    background-image: url("images/11_background.png");
 }
