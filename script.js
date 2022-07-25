@@ -6,7 +6,7 @@ console.log(CANVAS_HEIGHT);
 const GAME_SPEED = 1;
 const IMAGE_WIDTH = 2048;
 const IMAGE_HEIGHT = 1546;
-
+ctx.imageSmoothingEnabled = false;
 const image1 = new Image();
 image1.src = 'images/01_ground.png';
 console.log(image1);
