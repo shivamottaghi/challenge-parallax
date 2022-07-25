@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width;
 const CANVAS_HEIGHT = canvas.height;
 console.log(CANVAS_HEIGHT);
-const GAME_SPEED = 1;
+const GAME_SPEED = 3;
 const IMAGE_WIDTH = 2048;
 const IMAGE_HEIGHT = 1546;
 ctx.imageSmoothingEnabled = false;
@@ -59,9 +59,23 @@ class Layer {
         ctx.drawImage(this.image , this.x2, this.y, this.width, this.height);
     }
 }
-const layer1 = new Layer(image1 , 0.2);
+const layer1 = new Layer(image1 , 0.98);
+const layer2 = new Layer(image2 , 0.9);
+const layer3 = new Layer(image3 , 0.8);
+const layer4 = new Layer(image4 , 0.7);
+const layer5 = new Layer(image5 , 0.6);
+const layer6 = new Layer(image6 , 0.5);
+const layer7 = new Layer(image7 , 0.4);
+const layer8 = new Layer(image8 , 0.3);
+const layer9 = new Layer(image9 , 0.2);
+const layer10 = new Layer(image10 , 0.1);
+const layers = [layer1 , layer2 , layer3 , layer4 , layer5 , layer6 , layer7 , layer8 , layer9 , layer10]
 const main = () => {
     ctx.clearRect(0 , 0 , CANVAS_WIDTH, CANVAS_HEIGHT);
+    layers.slice().reverse().forEach(layer => {
+        layer.update();
+        layer.draw();
+    });
     layer1.update();
     layer1.draw();
     requestAnimationFrame(main);
