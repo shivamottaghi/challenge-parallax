@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
+const CANVAS_WIDTH = canvas.width = 700;
 const CANVAS_HEIGHT = canvas.height = 600;
-const CANVAS_WIDTH = canvas.width = 900;
 const GAME_SPEED = 5;
 
 const image1 = new Image();
@@ -21,10 +21,38 @@ image7.src = 'images/07_huge_clouds.png';
 const image8 = new Image();
 image8.src = 'images/08_clouds.png';
 const image9 = new Image();
-image9.src = '09_distant_clouds1.png';
+image9.src = 'images/09_distant_clouds1.png';
 const image10 = new Image();
 image10.src = 'images/10_distant_clouds.png';
 const image11 = new Image();
 image11.src = 'images/11_background.png';
+
+class Layer {
+    constructor(image , speedModifier) {
+        this.x = 0;
+        this.y = 0;
+        this.image = image;
+        this.speedModifier = speedModifier;
+        this.speed = GAME_SPEED * this.speedModifier;
+        this.width = 2048;
+        this.height = 600;
+        this.x2 = this.width;
+    }
+    update(){
+        if (this.x <= -this.width){
+            this.x = this.width + this.x2 - this.speed;
+        }
+        if (this.x2 <= - this.width){
+            this.x2 = this.width + this.x - this.speed;
+        }
+        this.x -= this.speed;
+        this.x2 -= this.speed;
+    }
+    draw(){
+        ctx.drawImage(this.image , this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image , this.x, this.y, this.width, this.height);
+    }
+}
+
 
 
