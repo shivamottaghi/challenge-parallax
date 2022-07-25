@@ -1,11 +1,15 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
-const CANVAS_WIDTH = canvas.width = 700;
-const CANVAS_HEIGHT = canvas.height = 600;
-const GAME_SPEED = 5;
+const CANVAS_WIDTH = canvas.width;
+const CANVAS_HEIGHT = canvas.height;
+console.log(CANVAS_HEIGHT);
+const GAME_SPEED = 1;
+const IMAGE_WIDTH = 2048;
+const IMAGE_HEIGHT = 1546;
 
 const image1 = new Image();
 image1.src = 'images/01_ground.png';
+console.log(image1);
 const image2 = new Image();
 image2.src = 'images/02_trees and bushes.png';
 const image3 = new Image();
@@ -26,6 +30,7 @@ const image10 = new Image();
 image10.src = 'images/10_distant_clouds.png';
 const image11 = new Image();
 image11.src = 'images/11_background.png';
+console.log(Math.round(CANVAS_HEIGHT * IMAGE_WIDTH / IMAGE_HEIGHT));
 
 class Layer {
     constructor(image , speedModifier) {
@@ -34,8 +39,9 @@ class Layer {
         this.image = image;
         this.speedModifier = speedModifier;
         this.speed = GAME_SPEED * this.speedModifier;
-        this.width = 2048;
-        this.height = 600;
+        this.width = Math.round(CANVAS_HEIGHT * IMAGE_WIDTH / IMAGE_HEIGHT);
+       // this.width = 500;
+        this.height = CANVAS_HEIGHT;
         this.x2 = this.width;
     }
     update(){
@@ -50,9 +56,15 @@ class Layer {
     }
     draw(){
         ctx.drawImage(this.image , this.x, this.y, this.width, this.height);
-        ctx.drawImage(this.image , this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image , this.x2, this.y, this.width, this.height);
     }
 }
+const layer1 = new Layer(image1 , 0.2);
+const main = () => {
+    ctx.clearRect(0 , 0 , CANVAS_WIDTH, CANVAS_HEIGHT);
+    layer1.update();
+    layer1.draw();
+    requestAnimationFrame(main);
+}
 
-
-
+main();
