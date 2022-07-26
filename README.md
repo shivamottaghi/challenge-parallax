@@ -27,6 +27,6 @@
 
 ### my challenges
 - When trying to make the ground move, the image's resolution got super low... I couldn't find the
-problem at all. Thanks to Tim, my coach, I realized that I needed to style the css inline... 
+problem at all. Thanks to Tim, my coach, I realized that I needed to use inline css for canvas... 
 Apparently as he said
 >>  css constraints interfere with the rendering of your canvas, which is why there's an edge case that inline styling is actually more optimal than regular styling through a css file.
