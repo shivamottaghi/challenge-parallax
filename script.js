@@ -31,6 +31,9 @@ const image11 = new Image();
 image11.src = 'images/11_background.png';
 const playerRun =new SuperGif();
 playerRun.src = 'images/run.gif';*/
+
+const playerRun = new Image();
+playerRun.src = 'images/Run.png';
 console.log(Math.round(CANVAS_HEIGHT * IMAGE_WIDTH / IMAGE_HEIGHT));
 
 class Layer {
@@ -70,13 +73,25 @@ const layer6 = new Layer(image6 , 0.6);
 const layer8 = new Layer(image8 , 0.3);
 const layer9 = new Layer(image9 , 0.2);
 const layer10 = new Layer(image10 , 0.1);*/
-const layers = [layer1 , layer2 , layer3 , layer4 , layer5 , layer6 /*, layer7 , layer8 , layer9 , layer10*/]
+const layers = [layer1 , layer2 , layer3 , layer4 , layer5 , layer6 /*, layer7 , layer8 , layer9 , layer10*/];
+let playerSw = 150;
+let playerSx = 0;
+let i = 0;
 const main = () => {
     ctx.clearRect(0 , 0 , CANVAS_WIDTH, CANVAS_HEIGHT);
     layers.forEach(layer => {
         layer.update();
         layer.draw();
     });
+    ctx.drawImage(playerRun, playerSx , 0 , 150 , 150 , 0 , 300 , 400, 400);
+    if (i%5 == 4){
+        playerSx+=playerSw;
+        i=0;
+    }
+    if (playerSx> 1050){
+        playerSx = 0;
+    }
+    i++;
    // ctx.drawImage(playerRun , 350, 250);
     requestAnimationFrame(main);
 }
